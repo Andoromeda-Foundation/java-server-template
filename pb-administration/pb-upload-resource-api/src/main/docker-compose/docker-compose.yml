@@ -1,0 +1,22 @@
+pb-upload-resource-api:
+  restart: always
+  container_name: pb-upload-resource-api.service
+  privileged: true
+  image: docker.36355888.top/pb-upload-resource-api:latest
+  ports:
+    - "3886:3886"
+  volumes:
+    - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+    - /data0/pb-upload-resource-api/logs:/var/log
+    - /data0/pb-upload-resource-api/data:/var/data
+  dns:
+    - 8.8.8.8
+    - 114.114.114.114
+  extra_hosts:
+    - "prod.db.36355888.top:192.168.10.151"
+    - "prod.redis.36355888.top:192.168.10.151"
+    - "staging.db.36355888.top:192.168.10.151"
+    - "staging.redis.do.top:192.168.10.151"
+    - "mongo1:192.168.10.152"
+    - "mongo2:192.168.10.153"
+    - "mongo3:192.168.10.154"

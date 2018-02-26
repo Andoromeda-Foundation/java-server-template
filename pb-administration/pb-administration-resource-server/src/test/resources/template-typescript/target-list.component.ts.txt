@@ -1,0 +1,64 @@
+import {OnInit, Component} from "@angular/core";
+import {{target-model}} from "./{target-file-path}";
+import {Page} from "../../common/page";
+import * as Collections from "typescript-collections";
+import {Title} from "@angular/platform-browser";
+import {Router} from "@angular/router";
+import {{target-model}Service} from "./{target-file-path}.service";
+
+@Component({
+  templateUrl: "./{target-file-path}-list.component.html"
+})
+export class {target-model}ListComponent extends OnInit {
+
+  {target-variable}s: {target-model}[];
+
+  page = new Page<{target-model}[]>();
+
+  selected{target-model}s = new Collections.Set<{target-model}>();
+
+  enableSaveButton: boolean;
+
+  constructor(private titleService: Title, private router: Router, private {target-variable}Service: {target-model}Service) {
+    super();
+  }
+
+  ngOnInit() {
+    this.titleService.setTitle("自动保护设备工作记录");
+
+    this.onPageNumberChange(this.page);
+  }
+
+  onPageNumberChange(page: Page<any>) {
+    this.{target-variable}Service.get{target-model}s(page)
+      .subscribe(p => {
+        this.page = p;
+        this.{target-variable}s = p.data;
+      }, err => console.log(err));
+  }
+
+  onChangeCheckStatus({target-variable}: {target-model}, targetValue: boolean) {
+    if (targetValue) {
+      this.selected{target-model}s.add({target-variable});
+    } else {
+      this.selected{target-model}s.remove({target-variable});
+    }
+
+    this.enableSaveButton = this.selected{target-model}s.size() === 1;
+  }
+
+  onCreate() {
+    this.router.navigate(['/bss/running/{target-variable}/detail', 0]);
+  }
+
+  onModify() {
+    this.router.navigate(['/bss/running/{target-variable}/detail', this.selected{target-model}s.toArray()[0].id]);
+  }
+
+  exportCSV() {
+    let body = JSON.stringify(this.{target-variable}s);
+    let thefile = new Blob([body], {type: "text/csv"});
+    let url = window.URL.createObjectURL(thefile);
+    window.open(url);
+  }
+}

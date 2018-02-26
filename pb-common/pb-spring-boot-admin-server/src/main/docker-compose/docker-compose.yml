@@ -1,0 +1,25 @@
+version: '2'
+services:
+  pb-spring-boot-admin-server:
+    restart: always
+    container_name: pb-spring-boot-admin-server.service
+    privileged: true
+    image: docker.36355888.top/pb-spring-boot-admin-server:latest
+    networks:
+      - "admin"
+    ports:
+      - "38090:8080"
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+      - /data0/pb-spring-boot-admin-server/logs:/var/log
+    dns:
+      - 8.8.8.8
+      - 114.114.114.114
+    extra_hosts:
+      - "prod.db.36355888.top:192.168.10.151"
+      - "prod.redis.36355888.top:192.168.10.151"
+      - "staging.db.36355888.top:192.168.10.151"
+      - "staging.redis.36355888.top:192.168.10.151"
+
+networks:
+  admin:

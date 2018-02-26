@@ -1,0 +1,24 @@
+pb-administration-resource-server:
+  restart: always
+  container_name: pb-administration-resource-server.service
+  privileged: true
+  image: docker.36355888.top/pb-administration-resource-server:latest
+  ports:
+    - "3884:3884"
+  volumes:
+    - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+    - /app/pb-administration-resource-server/logs:/var/log
+  dns:
+    - 8.8.8.8
+    - 114.114.114.114
+  extra_hosts:
+    - "prod.db.36355888.top:192.168.10.151"
+    - "prod.redis.36355888.top:192.168.10.151"
+    - "staging.db.36355888.top:192.168.10.151"
+    - "staging.redis.36355888.top:192.168.10.151"
+    - "mongo1.36355888.top:192.168.10.152"
+    - "mongo2.36355888.top:192.168.10.153"
+    - "mongo3.36355888.top:192.168.10.154"
+    - "mongo1:192.168.10.152"
+    - "mongo2:192.168.10.153"
+    - "mongo3:192.168.10.154"

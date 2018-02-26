@@ -1,0 +1,4 @@
+ALTER TABLE `bss_power_consume`
+  CHANGE COLUMN `peak` `peak` DECIMAL(20,4) NULL DEFAULT NULL ,
+  CHANGE COLUMN `plain` `plain` DECIMAL(20,4) NULL DEFAULT NULL ,
+  CHANGE COLUMN `valley` `valley` DECIMAL(20,4) NULL DEFAULT NULL ;

@@ -1,0 +1,1 @@
+ALTER TABLE plc_discharge_scale_metadata MODIFY host VARCHAR(20);

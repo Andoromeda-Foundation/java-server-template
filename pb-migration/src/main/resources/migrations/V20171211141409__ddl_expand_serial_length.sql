@@ -1,0 +1,1 @@
+ALTER TABLE plc_discharge_scale_metadata MODIFY serial VARCHAR(24) NOT NULL;

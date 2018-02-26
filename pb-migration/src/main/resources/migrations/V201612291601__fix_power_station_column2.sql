@@ -1,0 +1,1 @@
+ALTER TABLE power_broker.power_stations CHANGE voltage_unknow voltage_unknown INT(11) DEFAULT '0';

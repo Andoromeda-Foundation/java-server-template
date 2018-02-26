@@ -1,0 +1,49 @@
+security:
+    basic:
+        enabled: false
+    filter-order: 2
+server:
+    contextPath: /auth-server
+    port: 3883
+spring:
+    redis:
+      host: staging.redis.36355888.top
+      password: Zhongxin2017good!#
+      database: 1
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
+        test-on-return: true
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: power_broker
+        tomcat:
+            initial-size: 20
+            max-active: 50
+            max-wait: 28800
+            test-on-borrow: true
+            test-on-return: true
+            test-while-idle: true
+            validation-query: SELECT 1
+        url: jdbc:mysql://staging.db.36355888.top:3306/power_broker?characterEncoding=utf-8&useSSL=false
+        username: power_broker
+    jackson:
+        default-property-inclusion: non_null
+    jpa:
+          show-sql: true
+          hibernate:
+            naming:
+              implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+            ddl-auto: validate
+          properties:
+            hibernate:
+              dialect: org.hibernate.dialect.MySQL5Dialect
+              format_sql: true
+endpoints:
+  cors:
+    allowed-headers: '*'
+    allowed-methods: POST,GET,DELETE,PUT
+    allowed-origins: content-type,access-control-request-headers,access-control-request-method,accept,origin,authorization,x-requested-with
+    max-age: 3600

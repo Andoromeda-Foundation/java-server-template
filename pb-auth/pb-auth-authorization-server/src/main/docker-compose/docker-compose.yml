@@ -1,0 +1,19 @@
+pb-auth-authorization-server:
+  restart: always
+  container_name: pb-auth-authorization-server.service
+  privileged: true
+  image: docker.36355888.top/pb-auth-authorization-server:latest
+  ports:
+    - "3883:3883"
+  volumes:
+    - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+    - /app/pb-auth-authorization-server/logs:/var/log
+  dns:
+    - 8.8.8.8
+    - 114.114.114.114
+  extra_hosts:
+    - "prod.db.36355888.top:192.168.10.151"
+    - "prod.redis.36355888.top:192.168.10.151"
+    - "staging.db.36355888.top:192.168.10.151"
+    - "staging.redis.36355888.top:192.168.10.151"
+

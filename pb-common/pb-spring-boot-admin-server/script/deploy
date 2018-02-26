@@ -1,0 +1,29 @@
+#!/bin/sh
+
+webapp_name="pb-spring-boot-admin-server"
+target_host=$1
+target_ssh_port=$2
+target_compose_file="$webapp_name.yml"
+
+scp -i /root/.ssh/id_rsa $webapp_name/src/main/docker-compose/docker-compose.yml $target_host:/tmp/$target_compose_file
+
+cat <<'EOT' | ssh $target_host /bin/bash
+
+webapp_folder="/data0/app"
+webapp_name="pb-spring-boot-admin-server"
+target_folder="$webapp_folder/$webapp_name"
+image_name="docker.36355888.top/"$webapp_name
+
+if [ ! -d "$target_folder" ]; then
+  mkdir -p $target_folder
+  mkdir -p $target_folder/bin && mkdir -p $target_folder/logs && mkdir -p $target_folder/data && mkdir -p $target_folder/conf
+fi
+
+mv /tmp/$webapp_name.yml $target_folder/bin/docker-compose.yml
+
+docker rmi -f $image_name
+cd $target_folder/bin/ && docker-compose down && docker-compose up -d
+unused_image=`docker images --filter "dangling=true" -q --no-trunc`
+[ -n "$unused_image" ] && docker rmi $unused_image && docker images $image_name
+
+EOT

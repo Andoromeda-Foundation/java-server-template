@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>pb-parent</artifactId>
+        <groupId>com.powerbroker</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>pb-administration-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>pb-administration-resource-server</module>
+    </modules>
+
+    <properties>
+        <spring-boot-dependencies.version>1.5.4.RELEASE</spring-boot-dependencies.version>
+        <spring-data-releasetrain.version>Ingalls-RELEASE</spring-data-releasetrain.version>
+
+        <pb-common-biz.version>1.0.0-SNAPSHOT</pb-common-biz.version>
+        <pb-report-data-domain.version>1.0.0-SNAPSHOT</pb-report-data-domain.version>
+        <spring-boot-admin-starter-client.version>1.4.4</spring-boot-admin-starter-client.version>
+        <activiti.version>5.22.0</activiti.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.powerbroker</groupId>
+                <artifactId>pb-common-parent</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-releasetrain</artifactId>
+                <version>${spring-data-releasetrain.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.powerbroker</groupId>
+                <artifactId>pb-common-biz</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+
+            <!-- Spring boot Admin -->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot-admin-starter-client.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.powerbroker</groupId>
+                <artifactId>pb-report-parent</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>com.powerbroker</groupId>
+                <artifactId>pb-report-data-domain</artifactId>
+                <version>${pb-report-data-domain.version}</version>
+            </dependency>
+
+            <!-- activiti -->
+            <dependency>
+                <groupId>org.activiti</groupId>
+                <artifactId>activiti-spring-boot-starter-basic</artifactId>
+                <version>${activiti.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.activiti</groupId>
+                <artifactId>activiti-spring-boot-starter-jpa</artifactId>
+                <version>${activiti.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

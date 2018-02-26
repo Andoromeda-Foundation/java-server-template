@@ -1,0 +1,2 @@
+ALTER TABLE `documents`
+  CHANGE COLUMN `length` `length` BIGINT(20) NULL DEFAULT NULL ;

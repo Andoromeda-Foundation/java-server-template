@@ -1,0 +1,40 @@
+import {Injectable} from "@angular/core";
+import {environment} from "../../../../../pb-auth-web/src/environments/environment";
+import {Http} from "@angular/http";
+import {Page} from "../../common/page";
+import {AbstractCommonService} from "../../common/abstract.common.service";
+import {AuthorizableHTTPService} from "../../common/authorizable.http.service";
+import {{target-model}} from "./{target-file-path}";
+import {Observable} from "rxjs";
+
+@Injectable()
+export class {target-model}Service extends AbstractCommonService {
+
+  private searchURL = environment.appURI + '{target-variable}/list/';
+  private crudURL = environment.appURI + '{target-variable}/';
+
+  constructor(protected http: Http, protected authorizableHTTPService: AuthorizableHTTPService) {
+    super(http, authorizableHTTPService);
+  }
+
+  get{target-model}s(page: Page<{target-model}[]>): Observable<Page<{target-model}[]>> {
+    return this.get(this.searchURL + page.number);
+  }
+
+  get{target-model}(id: string): Observable<{target-model}> {
+    return this.get(this.crudURL + id);
+  }
+
+  create({target-model}: {target-model}): Observable<{target-model}> {
+    return this.post(this.crudURL, null, null, JSON.stringify({target-model}));
+  }
+
+  update({target-model}: {target-model}): Observable<{target-model}> {
+    return this.put(this.crudURL, null, null, JSON.stringify({target-model}));
+  }
+
+  delete(id: string): Observable<{target-model}> {
+    return super.delete(this.crudURL + id);
+  }
+
+}

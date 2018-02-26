@@ -1,0 +1,15 @@
+ALTER TABLE `power_broker`.`patrols`
+  ADD COLUMN `name` VARCHAR(45) NULL AFTER `delete_at`,
+  ADD COLUMN `state` VARCHAR(45) NULL AFTER `name`,
+  ADD COLUMN `period` VARCHAR(45) NULL AFTER `state`,
+  ADD COLUMN `time` VARCHAR(45) NULL AFTER `period`,
+  ADD COLUMN `month` VARCHAR(45) NULL AFTER `time`,
+  ADD COLUMN `week` VARCHAR(45) NULL AFTER `month`,
+  ADD COLUMN `repeat_period` VARCHAR(45) NULL AFTER `week`,
+  ADD COLUMN `begin` VARCHAR(45) NULL AFTER `repeat_period`,
+  ADD COLUMN `end` VARCHAR(45) NULL AFTER `begin`,
+  ADD COLUMN `overlock` VARCHAR(45) NULL AFTER `end`,
+  ADD COLUMN `type` VARCHAR(45) NULL AFTER `overlock`,
+  ADD COLUMN `unit` VARCHAR(45) NULL AFTER `type`,
+  ADD COLUMN `person` VARCHAR(45) NULL AFTER `unit`,
+  ADD COLUMN `remark` VARCHAR(45) NULL AFTER `person`;

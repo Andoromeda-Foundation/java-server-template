@@ -1,0 +1,2 @@
+ALTER TABLE `roles`
+  ADD COLUMN `admin` TINYINT(1) NULL DEFAULT '0' AFTER `comment`;

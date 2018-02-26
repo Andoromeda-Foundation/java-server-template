@@ -1,0 +1,1 @@
+INSERT INTO `power_broker`.`sidebars` (`name`, `link`, `nav_id`) VALUES ('待办任务', 'reward', '10');

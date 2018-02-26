@@ -1,0 +1,6 @@
+ALTER TABLE `power_broker`.`electrical_testings`
+  CHANGE COLUMN `comment` `comment` VARCHAR(200) NULL DEFAULT NULL COMMENT '备注' ,
+  CHANGE COLUMN `create_at` `create_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间' ,
+  CHANGE COLUMN `update_at` `update_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间' ,
+  CHANGE COLUMN `delete_at` `delete_at` DATETIME NULL DEFAULT NULL COMMENT '删除时间' ,
+  ADD COLUMN `report_date` DATE NULL AFTER `comment`;

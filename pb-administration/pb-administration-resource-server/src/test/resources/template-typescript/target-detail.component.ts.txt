@@ -1,0 +1,48 @@
+import {OnInit, Component} from "@angular/core";
+import {Params, ActivatedRoute} from "@angular/router";
+import {{target-model}Service} from "./{target-file-path}.service";
+import {{target-model}} from "./{target-file-path}";
+import {Location} from "@angular/common";
+
+@Component({
+  templateUrl: "./{target-file-path}-detail.component.html"
+})
+export class {target-model}DetailComponent implements OnInit {
+
+  {target-variable} = new {target-model}();
+
+  constructor(private route: ActivatedRoute, private {target-variable}Service: {target-model}Service,
+              private location: Location) {
+  }
+
+  ngOnInit() {
+    this.route.params.forEach((params: Params) => {
+      let id = params['id'];
+      if (id != 0) {
+        this.{target-variable}Service.get{target-model}(id).subscribe({target-variable} => {
+            this.{target-variable} = {target-variable};
+          }
+        );
+      } else {
+        this.{target-variable} = new {target-model}();
+      }
+
+    });
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  save() {
+    if (this.{target-variable}.id) {
+      this.{target-variable}Service.update(this.{target-variable}).subscribe(() => this.goBack());
+    } else {
+      this.{target-variable}Service.create(this.{target-variable}).subscribe(() => this.goBack());
+    }
+  }
+
+  delete() {
+    this.{target-variable}Service.delete(this.{target-variable}.id).subscribe(() => this.goBack());
+  }
+}
